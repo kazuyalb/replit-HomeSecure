@@ -52,9 +52,8 @@ export default function CameraPage() {
       await savePhoto(imageData);
       toast({
         title: "写真を保存しました",
-        description: "2日後に自動的に削除されます"
+        description: "続けて撮影できます。2日後に自動的に削除されます"
       });
-      navigate('/');
     } catch (error) {
       console.error('Failed to capture photo:', error);
       toast({

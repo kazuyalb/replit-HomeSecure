@@ -41,10 +41,12 @@ export function DateGroup({ date, photos }: DateGroupProps) {
           </Card>
         ))}
       </div>
-      <PhotoViewer 
-        photo={selectedPhoto} 
-        onClose={() => setSelectedPhoto(null)} 
-      />
+      {selectedPhoto && (
+        <PhotoViewer 
+          photo={selectedPhoto} 
+          onClose={() => setSelectedPhoto(null)} 
+        />
+      )}
     </div>
   );
 }

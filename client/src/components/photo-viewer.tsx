@@ -11,7 +11,7 @@ export function PhotoViewer({ photo, onClose }: PhotoViewerProps) {
   if (!photo) return null;
 
   return (
-    <Dialog open={!!photo} onOpenChange={() => onClose()}>
+    <Dialog open={!!photo} onOpenChange={onClose}>
       <DialogContent className="max-w-[95vw] max-h-[95vh] p-0 bg-transparent border-none">
         <div className="relative group cursor-pointer" onClick={onClose}>
           <img

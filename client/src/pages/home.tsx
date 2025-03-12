@@ -35,6 +35,10 @@ export default function Home() {
     }
   }
 
+  const handlePhotoDeleted = () => {
+    loadPhotos();
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-pink-50 to-violet-50 dark:from-gray-900 dark:to-gray-800">
       <div className="container mx-auto px-4 py-8">
@@ -70,7 +74,7 @@ export default function Home() {
             </p>
           </div>
         ) : (
-          <PhotoGrid photos={photos} />
+          <PhotoGrid photos={photos} onPhotoDeleted={handlePhotoDeleted} />
         )}
       </div>
     </div>

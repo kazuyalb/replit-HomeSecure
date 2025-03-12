@@ -3,14 +3,25 @@ import { format } from 'date-fns';
 import { type Photo } from '@shared/schema';
 import { Card } from '@/components/ui/card';
 import { PhotoViewer } from './photo-viewer';
+import { deletePhoto } from '@/lib/db';
 
 interface DateGroupProps {
   date: Date;
   photos: Photo[];
+  onPhotoDeleted?: () => void;
 }
 
-export function DateGroup({ date, photos }: DateGroupProps) {
+export function DateGroup({ date, photos, onPhotoDeleted }: DateGroupProps) {
   const [selectedPhoto, setSelectedPhoto] = useState<Photo | null>(null);
+
+  const handleDelete = async (photoId: string) => {
+    try {
+      await deletePhoto(photoId);
+      onPhotoDeleted?.();
+    } catch (error) {
+      console.error('Failed to delete photo:', error);
+    }
+  };
 
   return (
     <div className="animate-in fade-in-50">
@@ -45,7 +56,8 @@ export function DateGroup({ date, photos }: DateGroupProps) {
         <PhotoViewer 
           photo={selectedPhoto}
           photos={photos}
-          onClose={() => setSelectedPhoto(null)} 
+          onClose={() => setSelectedPhoto(null)}
+          onDelete={handleDelete}
         />
       )}
     </div>

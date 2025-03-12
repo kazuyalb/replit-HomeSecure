@@ -5,12 +5,13 @@ import { DateGroup } from './date-group';
 
 interface PhotoGridProps {
   photos: Photo[];
+  onPhotoDeleted?: () => void;
 }
 
-export function PhotoGrid({ photos }: PhotoGridProps) {
+export function PhotoGrid({ photos, onPhotoDeleted }: PhotoGridProps) {
   const groupedPhotos = useMemo(() => {
     const groups = new Map<string, Photo[]>();
-    
+
     photos.forEach(photo => {
       const date = format(photo.createdAt, 'yyyy-MM-dd');
       if (!groups.has(date)) {
@@ -18,7 +19,7 @@ export function PhotoGrid({ photos }: PhotoGridProps) {
       }
       groups.get(date)!.push(photo);
     });
-    
+
     return Array.from(groups.entries())
       .sort(([a], [b]) => b.localeCompare(a))
       .map(([date, photos]) => ({
@@ -36,6 +37,7 @@ export function PhotoGrid({ photos }: PhotoGridProps) {
           key={group.date.toISOString()}
           date={group.date}
           photos={group.photos}
+          onPhotoDeleted={onPhotoDeleted}
         />
       ))}
     </div>

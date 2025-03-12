@@ -74,3 +74,13 @@ export async function getAllPhotos(): Promise<Photo[]> {
   const index = tx.objectStore('photos').index('by-created');
   return index.getAll();
 }
+
+export async function deletePhoto(photoId: string): Promise<void> {
+  if (!db) {
+    throw new Error('Database not initialized');
+  }
+
+  const tx = db.transaction('photos', 'readwrite');
+  await tx.objectStore('photos').delete(photoId);
+  await tx.done;
+}

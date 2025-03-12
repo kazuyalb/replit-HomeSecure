@@ -40,11 +40,13 @@ export function PhotoViewer({ photo, photos, onClose, onDelete }: PhotoViewerPro
     }
   }, [photo, photos, emblaApi]);
 
-  const scrollPrev = useCallback(() => {
+  const scrollPrev = useCallback((e: React.MouseEvent) => {
+    e.stopPropagation();
     if (emblaApi) emblaApi.scrollPrev();
   }, [emblaApi]);
 
-  const scrollNext = useCallback(() => {
+  const scrollNext = useCallback((e: React.MouseEvent) => {
+    e.stopPropagation();
     if (emblaApi) emblaApi.scrollNext();
   }, [emblaApi]);
 
@@ -66,6 +68,11 @@ export function PhotoViewer({ photo, photos, onClose, onDelete }: PhotoViewerPro
     onClose();
   }, [photo, onDelete, onClose, toast]);
 
+  const handleTrashClick = useCallback((e: React.MouseEvent) => {
+    e.stopPropagation();
+    setShowDeleteDialog(true);
+  }, []);
+
   if (!photo || !photos.length) return null;
 
   return (
@@ -80,11 +87,12 @@ export function PhotoViewer({ photo, photos, onClose, onDelete }: PhotoViewerPro
             dragConstraints={{ top: 0, bottom: 0 }}
             onDragEnd={handleDragEnd}
             dragElastic={0.7}
+            onClick={onClose}
           >
             <div className="flex touch-pan-y">
               {photos.map((p) => (
                 <div key={p.id} className="flex-[0_0_100%] min-w-0">
-                  <div className="relative group cursor-pointer h-[90vh]">
+                  <div className="relative group h-[90vh]">
                     <img
                       src={p.imageData}
                       alt={format(p.createdAt, "yyyy-MM-dd HH:mm")}
@@ -126,7 +134,7 @@ export function PhotoViewer({ photo, photos, onClose, onDelete }: PhotoViewerPro
               variant="ghost"
               size="icon"
               className="absolute top-4 right-4 bg-black/20 hover:bg-black/40 text-white"
-              onClick={() => setShowDeleteDialog(true)}
+              onClick={handleTrashClick}
             >
               <Trash2 className="h-6 w-6" />
             </Button>

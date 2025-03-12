@@ -43,7 +43,8 @@ export function DateGroup({ date, photos }: DateGroupProps) {
       </div>
       {selectedPhoto && (
         <PhotoViewer 
-          photo={selectedPhoto} 
+          photo={selectedPhoto}
+          photos={photos}
           onClose={() => setSelectedPhoto(null)} 
         />
       )}

@@ -4,28 +4,29 @@
 
 ## ビルド手順
 
-1. 以下のコマンドでアプリケーションをビルドします：
+以下のコマンドでアプリケーションをビルドします：
 ```bash
 npm run build
 ```
 
-2. ビルドが完了したら、`dist/public`フォルダの内容を`dist`フォルダに移動します：
-```bash
-cp -r dist/public/* dist/
-```
+ビルドが完了すると、`dist/public`フォルダに静的ファイルが生成されます。
 
 ## デプロイ方法
 
 以下のいずれかの静的ホスティングサービスにデプロイできます：
 
+### Replit Deploy
+1. `npm run build`を実行してビルド
+2. デプロイボタンをクリック（公開ディレクトリは`dist/public`）
+
 ### GitHub Pages
 1. リポジトリの Settings > Pages から GitHub Pages を有効化
-2. `dist`フォルダの内容をデプロイ用ブランチ（例：gh-pages）にプッシュ
+2. `dist/public`フォルダの内容をデプロイ用ブランチ（例：gh-pages）にプッシュ
 
 ### Netlify/Vercel
 1. 新しいプロジェクトを作成
-2. ビルドコマンド: `npm run build && cp -r dist/public/* dist/`
-3. 公開ディレクトリ: `dist`
+2. ビルドコマンド: `npm run build`
+3. 公開ディレクトリ: `dist/public`
 
 ## 注意事項
 

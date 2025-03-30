@@ -60,9 +60,20 @@
   <body>
     <div id="root"></div>
     <script>
+      // サービスワーカーを無効化 - GitHub Pages環境では問題があるため
+      // if ('serviceWorker' in navigator) {
+      //   window.addEventListener('load', () => {
+      //     navigator.serviceWorker.register('./service-worker.js');
+      //   });
+      // }
+
+      // 既に登録されたサービスワーカーを登録解除
       if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-          navigator.serviceWorker.register('./service-worker.js');
+        navigator.serviceWorker.getRegistrations().then(function(registrations) {
+          for(let registration of registrations) {
+            registration.unregister();
+            console.log('Service Worker unregistered');
+          }
         });
       }
     </script>

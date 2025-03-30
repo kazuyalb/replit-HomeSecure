@@ -8,6 +8,16 @@
     <script>
       // リダイレクト
       window.location.href = './';
+      
+      // サービスワーカーの登録解除
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.getRegistrations().then(function(registrations) {
+          for(let registration of registrations) {
+            registration.unregister();
+            console.log('Service Worker unregistered from 404');
+          }
+        });
+      }
     </script>
   </head>
   <body>

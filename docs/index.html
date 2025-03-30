@@ -50,19 +50,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Temporary Photos</title>
     <meta name="description" content="Take photos that auto-delete after 2 days" />
-    <link rel="manifest" href="/replit-HomeSecure/manifest.json" />
+    <link rel="manifest" href="./manifest.json" />
     <meta name="theme-color" content="#000000" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-    <script type="module" crossorigin src="/replit-HomeSecure/assets/index-B90yzBpF.js"></script>
-    <link rel="stylesheet" crossorigin href="/replit-HomeSecure/assets/index-Dk743TYM.css">
+    <script type="module" crossorigin src="./assets/index-B90yzBpF.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-Dk743TYM.css">
   </head>
   <body>
     <div id="root"></div>
     <script>
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
-          navigator.serviceWorker.register('/replit-HomeSecure/service-worker.js');
+          navigator.serviceWorker.register('./service-worker.js');
         });
       }
     </script>

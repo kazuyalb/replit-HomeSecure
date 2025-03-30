@@ -9,6 +9,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 export default defineConfig({
+  base: '/HomeSecureCheck/', // GitHub Pagesのリポジトリ名に合わせたベースパスを追加
   plugins: [
     react(),
     runtimeErrorOverlay(),
